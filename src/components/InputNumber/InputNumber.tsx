@@ -1,10 +1,10 @@
+import { InputNumType } from "../Form/Form";
 
-
-export const InputNumber = () => {
+export const InputNumber: React.FunctionComponent<InputNumType> = ({name}) => {
     return (
-        <div className="p-2">
-            <label htmlFor="units">Enter weight</label>
-            <input type="number" placeholder="Weight" className="p-2 rounded border"></input>
+        <div className="flex flex-col p-2">
+            <label htmlFor="units">Enter {name}</label>
+            <input type="number" placeholder={name} className="p-2 rounded border"></input>
         </div>
     );
 }
