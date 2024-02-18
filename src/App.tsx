@@ -7,7 +7,7 @@ function App() {
   // const [count, setCount] = useState(0)
 
   return (
-    <main className="container rounded border-solid border-2 bg-emerald-400">
+    <main className="container rounded-md border-black border-solid border-2">
       <Header />
       <Form />
     </main>

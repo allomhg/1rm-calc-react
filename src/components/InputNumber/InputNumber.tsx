@@ -2,9 +2,9 @@
 
 export const InputNumber = () => {
     return (
-        <>
-            <label htmlFor="weight">Enter Weight:</label>
-            <input type="number"></input>
-        </>
+        <div className="p-2">
+            <label htmlFor="units">Enter weight</label>
+            <input type="number" placeholder="Weight" className="p-2 rounded border"></input>
+        </div>
     );
 }
