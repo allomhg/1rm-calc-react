@@ -19,7 +19,7 @@ const numInputs: InputNumType[] = [
 
 export const Form = () => {
     return (
-        <form className="flex flex-col p-4 bg-white">
+        <form className="flex flex-col items-center p-4 bg-white">
             <InputSelect />
             {numInputs.map(( input ) => (
                 <InputNumber
