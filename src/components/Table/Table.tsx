@@ -5,20 +5,24 @@ const data = {
     reps: 10
 }
 
-
-export const Table = () => {
-
-    const rows = [];
+function generateRows() {
+    const rows: [JSX.Element] = [<></>];
 
     for (let i = 0; i < data.percentage; i += 10) {
         rows.push(
             <tr className="border-slate-300 border-b-2">
-                <td>{data.percentage}</td>
+                <td>{data.percentage - i}</td>
                 <td>{data.weight}</td>
                 <td>{data.reps}</td>
             </tr>
         )
-    }
+        }
+    return rows;
+}
+
+export const Table = () => {
+
+    const rows = generateRows();
 
     return (
         <section className="p-4">
