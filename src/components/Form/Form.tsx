@@ -21,13 +21,15 @@ export const Form = () => {
     return (
         <form className="flex flex-col items-center p-4 bg-white">
             <InputSelect />
-            {numInputs.map(( input ) => (
+            <div className="flex">
+                {numInputs.map(( input ) => (
                 <InputNumber
                     key={input.name}
                     name={input.name}
                     // value={input.value}
                 />
-            ))}
+                ))}
+            </div>
             <Button />
         </form>
     );
