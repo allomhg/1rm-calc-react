@@ -1,7 +1,5 @@
 import { InputNumType } from "../Form/Form";
 
-
-
 export const InputNumber: React.FunctionComponent<InputNumType> = ({name}) => {
     if (name == "Reps") {
         return (

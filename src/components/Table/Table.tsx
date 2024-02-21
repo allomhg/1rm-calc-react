@@ -1,3 +1,5 @@
+// import { useContext } from "react";
+// import { RepsContext, WeightContext } from "../../context/Context";
 
 const data = {
     percentage: 100,
@@ -22,11 +24,12 @@ function generateRows() {
 }
 
 export const Table = () => {
-
+    // const repsContext = useContext(RepsContext);
+    // const weightContext = useContext(WeightContext);
     const rows = generateRows();
 
     return (
-        <section className="p-4 bg-white">
+        <section className="w-full">
             <table className="w-full border-collapse">
                 <thead className="bg-sky-300 border-slate-400 border-b-4">
                     <tr>
