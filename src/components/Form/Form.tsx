@@ -1,56 +1,63 @@
 import { InputSelect } from "../InputSelect/InputSelect";
-import { InputNumber } from "../InputNumber/InputNumber";
+// import { InputNumber } from "../InputNumber/InputNumber";
+import { InputWeight } from "../InputWeight/InputWeight";
+import { InputReps } from "../InputReps/InputReps";
 import { Button } from "../Button/Button";
 import { Table } from "../Table/Table";
 import { useState } from 'react';
 
-export type InputNumType = {
-    name: string;
-    // value: number;
+interface InputStateType {
+    weightValue: number;
+    repsValue: number;
+    inputState: { weight: number, reps: number }
 }
 
-// const numInputs: InputNumType[] = [
-//     {name: "Weight", value: 0},
-//     {name: "Reps", value: 0},
-// ]
-
-const numInputs: InputNumType[] = [
-    {name: "Weight"},
-    {name: "Reps"},
-]
-
 export const Form = () => {
-    const [weight, setWeight] = useState(0);
-    const [reps, setReps] = useState(0);
-    const [inputs, setInputs] = useState([0 ,0]) // Weight, reps
+    const [inputs, setInputs] = useState<InputStateType>({
+        weightValue: 0,
+        repsValue: 0,
+        inputState: { weight: 0, reps: 0},
+    })
 
-    const handleWeightChange = (event) => {
-        setWeight(event.target.value);
+    const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = Number(event.target.value);
+        if (isNaN(newValue)) {
+            return;
+        }
+
+        setInputs({ ...inputs, weightValue: newValue });
+        console.log(inputs);
     }
-    
-    const handleRepChange = (event) => {
-        setReps(event.target.value);
+
+    const handleRepChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = Number(event.target.value);
+        if (isNaN(newValue)) {
+            return;
+        }
+        setInputs({ ...inputs, repsValue: newValue });
+        console.log(inputs);
     }
 
     const handleClick = () => {
-        const combinedData = [weight, reps];
-        setInputs(combinedData);
+        setInputs({
+            ...inputs,
+            inputState: {
+                weight: inputs.weightValue,
+                reps: inputs.repsValue,
+            },
+        })
+        console.log(inputs)
     }
 
     return (
         <form className="flex flex-col items-center p-4">
             <InputSelect />
             <div className="flex">
-                {numInputs.map(( input ) => (
-                <InputNumber
-                    key={input.name}
-                    name={input.name}
-                    // value={input.value}
-                />
-                ))}
+                <InputWeight onChange={handleWeightChange} />
+                <InputReps onChange={handleRepChange} />
             </div>
             <Button onClick={handleClick} />
-            <Table />
+            <Table inputs={inputs} />
         </form>
     );
 }

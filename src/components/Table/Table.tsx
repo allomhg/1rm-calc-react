@@ -1,6 +1,3 @@
-// import { useContext } from "react";
-// import { RepsContext, WeightContext } from "../../context/Context";
-
 const data = {
     percentage: 100,
     weight: 50,
@@ -23,7 +20,7 @@ function generateRows() {
     return rows;
 }
 
-export const Table = () => {
+export const Table = ({ inputs }) => {
     // const repsContext = useContext(RepsContext);
     // const weightContext = useContext(WeightContext);
     const rows = generateRows();
