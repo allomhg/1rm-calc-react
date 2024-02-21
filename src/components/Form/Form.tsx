@@ -6,7 +6,7 @@ import { Button } from "../Button/Button";
 import { Table } from "../Table/Table";
 import { useState } from 'react';
 
-interface InputStateType {
+export interface InputStateType {
     weightValue: number;
     repsValue: number;
     inputState: { weight: number, reps: number }
