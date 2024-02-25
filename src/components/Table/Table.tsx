@@ -1,7 +1,7 @@
 import { InputStateType } from "../Form/Form";
 
 // function calculateWeight() {
-//     const reps = 
+//     const reps =
 // }
 
 function generateRows( inputs: InputStateType ) {
@@ -10,16 +10,18 @@ function generateRows( inputs: InputStateType ) {
     const reps = inputs.inputState.reps;
     const weight = inputs.inputState.weight;
     let percentage: number = 100;
+    let calcWeight: number = 0;
     // const history = [];
 
     // const oneRepMax: number = weight * ( 1 + reps / 30 );
 
     for ( let i = 1; i <= 10; i += 1 ) {
-        let calcWeight = weight * ( 1 + reps / 30 );
-        // let calcReps = ( ( oneRepMax / weight ) -1 ) * 30;
-
         if ( i !== 1 ) {
             calcWeight *= percentage / 100;
+            // calcReps = ( ( calcWeight / weight ) -1 ) * 30;
+        } else {
+            calcWeight = weight * ( 1 + reps / 30 );
+            // calcReps = ( ( calcWeight / weight ) -1 ) * 30;
         }
 
         rows.push(
