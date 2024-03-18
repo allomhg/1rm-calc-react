@@ -16,7 +16,8 @@ export interface InputStateType {
 
 export const Form = () => {
     const [isVisible, setIsVisible] = useState(false);
-
+    // const [units, setUnits] = useState("METRIC");
+    
     const [inputs, setInputs] = useState<InputStateType>({
         weightValue: 0,
         repsValue: 0,
@@ -58,7 +59,7 @@ export const Form = () => {
 
     return (
         <form className="flex flex-col items-center p-4">
-            <InputSelect />
+            <InputSelect onChange={changeUnits} />
             <div className="flex">
                 <InputWeight onChange={handleWeightChange} />
                 <InputReps onChange={handleRepChange} />

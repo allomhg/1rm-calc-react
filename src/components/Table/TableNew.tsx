@@ -17,7 +17,7 @@ function generateRows( inputs: InputStateType ) {
         } else {
             calcWeight = weight * ( 1 + reps / 30 );
             // calcReps = ( ( oneRepMax / weight ) - 1 ) * 30;
-            calcReps = ( ( oneRepMax / weight ) - 1 ) * 30;
+            calcReps = reps;
         }
 
         rows.push(
