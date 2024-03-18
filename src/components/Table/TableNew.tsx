@@ -1,9 +1,5 @@
 import { InputStateType } from "../Form/Form";
 
-// function calculateWeight() {
-//     const reps =
-// }
-
 function generateRows( inputs: InputStateType ) {
     const rows: [JSX.Element] = [<></>];
 
@@ -11,9 +7,8 @@ function generateRows( inputs: InputStateType ) {
     const weight = inputs.inputState.weight;
     let percentage: number = 100;
     let calcWeight: number = 0, calcReps: number = 0;
-    // const history = [];
 
-    const oneRepMax: number = weight * ( 1 + reps / 30 );
+    const oneRepMax: number = weight / (1.0278 - (0.0278 * reps))
 
     for ( let i = 1; i <= 10; i += 1 ) {
         if ( i !== 1 ) {
@@ -21,14 +16,15 @@ function generateRows( inputs: InputStateType ) {
             calcReps = ( ( oneRepMax / calcWeight ) - 1 ) * 30;
         } else {
             calcWeight = weight * ( 1 + reps / 30 );
+            // calcReps = ( ( oneRepMax / weight ) - 1 ) * 30;
             calcReps = ( ( oneRepMax / weight ) - 1 ) * 30;
         }
 
         rows.push(
             <tr className="border-slate-400 border-b-2">
-                <td className="bg-red-200 p-1 pl-2">{ percentage }</td>
-                <td className="bg-red-300 p-1 pl-2">{ calcWeight }</td>
-                <td className="bg-red-400 p-1 pl-2">{ calcReps }</td>
+                <td>{ percentage }</td>
+                <td>{ calcWeight }</td>
+                <td>{ calcReps }</td>
             </tr>
         )
         percentage -= 10;
@@ -36,7 +32,7 @@ function generateRows( inputs: InputStateType ) {
     return rows;
 }
 
-export const Table = ({ inputs }: {inputs: InputStateType}) => {
+export const TableNew = ({ inputs }: {inputs: InputStateType}) => {
     const rows = generateRows(inputs);
 
     return (

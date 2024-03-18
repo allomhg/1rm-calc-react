@@ -3,8 +3,10 @@ import { InputSelect } from "../InputSelect/InputSelect";
 import { InputWeight } from "../InputWeight/InputWeight";
 import { InputReps } from "../InputReps/InputReps";
 import { Button } from "../Button/Button";
-import { Table } from "../Table/Table";
+// import { Table } from "../Table/Table";
+import { TableNew } from "../Table/TableNew";
 import { useState } from 'react';
+// import { TableNew } from "../Table/TableNew";
 
 export interface InputStateType {
     weightValue: number;
@@ -13,11 +15,15 @@ export interface InputStateType {
 }
 
 export const Form = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
     const [inputs, setInputs] = useState<InputStateType>({
         weightValue: 0,
         repsValue: 0,
         inputState: { weight: 0, reps: 0},
     })
+
+    const toggleVisibility = () => setIsVisible(true);
 
     const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = Number(event.target.value);
@@ -39,6 +45,7 @@ export const Form = () => {
     }
 
     const handleClick = () => {
+        toggleVisibility();
         setInputs({
             ...inputs,
             inputState: {
@@ -57,7 +64,10 @@ export const Form = () => {
                 <InputReps onChange={handleRepChange} />
             </div>
             <Button onClick={handleClick} />
-            <Table inputs={inputs} />
+            {/* <Table inputs={inputs} /> */}
+            {isVisible && (
+                <TableNew inputs={inputs}/>
+            )}
         </form>
     );
 }
