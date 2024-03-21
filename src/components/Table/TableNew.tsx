@@ -6,25 +6,19 @@ function generateRows( inputs: InputStateType ) {
     const reps = inputs.inputState.reps;
     const weight = inputs.inputState.weight;
     let percentage: number = 100;
-    let calcWeight: number = 0, calcReps: number = 0;
+    let calcWeight: number = 0;
 
     const oneRepMax: number = weight / (1.0278 - (0.0278 * reps))
 
     for ( let i = 1; i <= 10; i += 1 ) {
-        if ( i !== 1 ) {
             calcWeight = oneRepMax * ( percentage / 100 );
-            calcReps = ( ( oneRepMax / calcWeight ) - 1 ) * 30;
-        } else {
-            calcWeight = weight * ( 1 + reps / 30 );
-            // calcReps = ( ( oneRepMax / weight ) - 1 ) * 30;
-            calcReps = reps;
-        }
+            calcWeight = Math.round((calcWeight + Number.EPSILON) * 100) / 100;
 
         rows.push(
             <tr className="border-slate-400 border-b-2">
                 <td>{ percentage }</td>
                 <td>{ calcWeight }</td>
-                <td>{ calcReps }</td>
+                {/* <td>{ calcReps }</td> */}
             </tr>
         )
         percentage -= 10;
@@ -42,7 +36,7 @@ export const TableNew = ({ inputs }: {inputs: InputStateType}) => {
                     <tr>
                         <td className="pl-2">1RM %</td>
                         <td className="pl-2">Weight</td>
-                        <td className="pl-2">Reps</td>
+                        {/* <td className="pl-2">Reps</td> */}
                     </tr>
                 </thead>
                 <tbody>

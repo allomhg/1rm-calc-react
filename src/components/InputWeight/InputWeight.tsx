@@ -2,7 +2,7 @@ import { ChangeEventHandler } from "react";
 
 export const InputWeight = ({ onChange, units } : {onChange: ChangeEventHandler, units: string}) => {
     let displayUnit: string = "";
-    
+
     if (units == "metric") {
         displayUnit = "kg";
     } else {

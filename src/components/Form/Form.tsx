@@ -1,17 +1,16 @@
 import { InputSelect } from "../InputSelect/InputSelect";
-// import { InputNumber } from "../InputNumber/InputNumber";
 import { InputWeight } from "../InputWeight/InputWeight";
 import { InputReps } from "../InputReps/InputReps";
 import { Button } from "../Button/Button";
 // import { Table } from "../Table/Table";
 import { TableNew } from "../Table/TableNew";
 import { useState } from 'react';
-// import { TableNew } from "../Table/TableNew";
 
 export interface InputStateType {
     weightValue: number;
     repsValue: number;
-    inputState: { weight: number, reps: number }
+    inputState: { weight: number, reps: number };
+    units: string;
 }
 
 export const Form = () => {
@@ -22,6 +21,7 @@ export const Form = () => {
         weightValue: 0,
         repsValue: 0,
         inputState: { weight: 0, reps: 0},
+        units: "",
     })
 
     const toggleVisibility = () => setIsVisible(true);
@@ -78,7 +78,7 @@ export const Form = () => {
             <Button onClick={handleClick} />
             {/* <Table inputs={inputs} /> */}
             {isVisible && (
-                <TableNew inputs={inputs}/>
+                <TableNew inputs={inputs} units={metricUnits} />
             )}
         </form>
     );

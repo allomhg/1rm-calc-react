@@ -8,7 +8,6 @@ function App() {
     <main className="container rounded-md border-black border-solid border-2">
       <Header />
       <Form />
-      {/* <Table /> */}
     </main>
   )
 }
