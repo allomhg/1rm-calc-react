@@ -26,7 +26,7 @@ function generateRows( inputs: InputStateType ) {
     return rows;
 }
 
-export const TableNew = ({ inputs }: {inputs: InputStateType}) => {
+export const TableNew = ({ inputs, units }: {inputs: InputStateType, units: string}) => {
     const rows = generateRows(inputs);
 
     return (
