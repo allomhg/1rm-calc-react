@@ -56,7 +56,8 @@ export const Form = () => {
         console.log(inputs);
     }
 
-    const handleClick = () => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>)  => {
+        e.preventDefault();
         toggleVisibility();
         setInputs({
             ...inputs,

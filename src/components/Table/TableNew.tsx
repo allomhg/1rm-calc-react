@@ -1,6 +1,6 @@
 import { InputStateType } from "../Form/Form";
 
-function generateRows( inputs: InputStateType ) {
+function generateRows( inputs: InputStateType, displayUnit: string ) {
     const rows: [JSX.Element] = [<></>];
 
     const reps = inputs.inputState.reps;
@@ -17,8 +17,7 @@ function generateRows( inputs: InputStateType ) {
         rows.push(
             <tr className="border-slate-400 border-b-2">
                 <td>{ percentage }</td>
-                <td>{ calcWeight }</td>
-                {/* <td>{ calcReps }</td> */}
+                <td>{ calcWeight + " " + displayUnit }</td>
             </tr>
         )
         percentage -= 10;
@@ -27,7 +26,15 @@ function generateRows( inputs: InputStateType ) {
 }
 
 export const TableNew = ({ inputs, units }: {inputs: InputStateType, units: string}) => {
-    const rows = generateRows(inputs);
+    let displayUnit: string = "";
+
+    if (units == "metric") {
+        displayUnit = "kg";
+    } else {
+        displayUnit = "lb";
+    }
+    
+    const rows = generateRows(inputs, displayUnit);
 
     return (
         <section className="w-full">
