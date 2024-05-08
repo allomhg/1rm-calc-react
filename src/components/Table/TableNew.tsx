@@ -33,7 +33,7 @@ export const TableNew = ({ inputs, units }: {inputs: InputStateType, units: stri
     } else {
         displayUnit = "lb";
     }
-    
+
     const rows = generateRows(inputs, displayUnit);
 
     return (

@@ -11,6 +11,7 @@ export interface InputStateType {
     repsValue: number;
     inputState: { weight: number, reps: number };
     units: string;
+    error: string;
 }
 
 export const Form = () => {
@@ -22,6 +23,7 @@ export const Form = () => {
         repsValue: 0,
         inputState: { weight: 0, reps: 0},
         units: "",
+        error: "",
     })
 
     const toggleVisibility = () => setIsVisible(true);
@@ -39,22 +41,27 @@ export const Form = () => {
 
     const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = Number(event.target.value);
-        if (isNaN(newValue)) {
-            return;
-        }
+
+        // const newValueTwo = event.target.value.replace(/[^0-9]/g, "");
 
         setInputs({ ...inputs, weightValue: newValue });
+        // setInputs({ ...inputs, weightValue: newValueTwo });
+        // errorHandling(newValueTwo);
         console.log(inputs);
     }
 
     const handleRepChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = Number(event.target.value);
-        if (isNaN(newValue)) {
-            return;
-        }
+
         setInputs({ ...inputs, repsValue: newValue });
+        // errorHandling(newValue);
         console.log(inputs);
     }
+
+    // const errorHandling = (newValueTwo: string) => {
+    //     const newError = newValueTwo.trim() === "" ? "This field cannot be empty" : "";
+    //     setInputs({...inputs, error: newError});
+    // }
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>)  => {
         e.preventDefault();
@@ -70,7 +77,10 @@ export const Form = () => {
     }
 
     return (
-        <form className="flex flex-col items-center p-4">
+        <form
+            className="flex flex-col items-center p-4"
+            onSubmit={ e => e.preventDefault()}
+        >
             <InputSelect metricUnits={metricUnits} onUnitSelect={handleUnitSelect}  />
             <div className="flex">
                 <InputWeight onChange={handleWeightChange} units={metricUnits}/>
@@ -81,6 +91,7 @@ export const Form = () => {
             {isVisible && (
                 <TableNew inputs={inputs} units={metricUnits} />
             )}
+            {inputs.error && <p className="color: bg-red-400">{inputs.error}</p>}
         </form>
     );
 }
