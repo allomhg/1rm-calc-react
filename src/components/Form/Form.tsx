@@ -1,7 +1,7 @@
 import { InputSelect } from "../InputSelect/InputSelect";
 import { InputWeight } from "../InputWeight/InputWeight";
 import { InputReps } from "../InputReps/InputReps";
-import { Button } from "../Button/Button";
+import Button from "../Button/Button";
 // import { Table } from "../Table/Table";
 import { TableNew } from "../Table/TableNew";
 import { useState } from 'react';
@@ -63,7 +63,7 @@ export const Form = () => {
     //     setInputs({...inputs, error: newError});
     // }
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>)  => {
+    const handleCalculate = (e: React.MouseEvent<HTMLButtonElement>)  => {
         e.preventDefault();
         toggleVisibility();
         setInputs({
@@ -76,6 +76,10 @@ export const Form = () => {
         console.log(inputs)
     }
 
+    const handleReset = () => {
+        console.log("Reset");
+    }
+
     return (
         <form
             className="flex flex-col items-center p-4"
@@ -86,10 +90,14 @@ export const Form = () => {
                 <InputWeight onChange={handleWeightChange} units={metricUnits}/>
                 <InputReps onChange={handleRepChange} />
             </div>
-            <Button onClick={handleClick} />
+            <Button label="Calculate 1RM" onClick={handleCalculate} />
+
             {/* <Table inputs={inputs} /> */}
             {isVisible && (
-                <TableNew inputs={inputs} units={metricUnits} />
+                <>
+                    <Button label="Reset" onClick={handleReset} />
+                    <TableNew inputs={inputs} units={metricUnits} />
+                </>
             )}
             {inputs.error && <p className="color: bg-red-400">{inputs.error}</p>}
         </form>
