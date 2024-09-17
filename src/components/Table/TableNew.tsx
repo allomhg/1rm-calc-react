@@ -22,6 +22,7 @@ function generateRows( inputs: InputStateType, displayUnit: string ) {
         )
         percentage -= 10;
     }
+    console.log(rows);
     return rows;
 }
 
@@ -34,7 +35,7 @@ export const TableNew = ({ inputs, units }: {inputs: InputStateType, units: stri
         displayUnit = "lb";
     }
 
-    const rows = generateRows(inputs, displayUnit);
+    const rows = generateRows(inputs, displayUnit); // I want to reset this when the reset button is pressed
 
     return (
         <section className="w-full">
